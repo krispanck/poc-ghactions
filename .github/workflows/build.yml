@@ -4,8 +4,19 @@
 name: Node.js CI
 
 on:
+  # On a manual run.
+  workflow_dispatch:
+    inputs:
+        environment:
+          description: 'Environment to run tests against'
+          type: environment
+          required: true
+  
+  # On a push to a branch.
   push:
     branches: [ "main" ]
+    
+  # On a pull request to a branch.
   pull_request:
     branches: [ "main" ]
     
@@ -21,14 +32,12 @@ env:
   
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
+    environment:  $environment
     strategy:
       matrix:
         node-version: [14.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
