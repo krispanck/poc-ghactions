@@ -1,0 +1,37 @@
+<Project>
+  <PropertyGroup Label="SDK Versions">
+    <NetCoreTargetVersion>netcoreapp2.1</NetCoreTargetVersion>
+    <NetStandardTargetVersion>netstandard2.0</NetStandardTargetVersion>    
+    <NetStandardImplicitPackageVersion>2.0.0</NetStandardImplicitPackageVersion>
+    <LangVersion>latest</LangVersion>
+    <TargetLatestRuntimePatch>false</TargetLatestRuntimePatch>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Company information">
+    <Company>Genesis Automation Ltd</Company>
+    <Authors>Genesis Automation Ltd</Authors>
+    <Copyright>Copyright © 2019 Genesis Automation Ltd. All rights reserved.</Copyright>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Package information">
+    <PackageIconUrl>https://www.genesisahc.com/app/themes/blankslate/assets/images/favicon.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/GenesisAutomation/Genesis.RepoTemplate</RepositoryUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
+    <EnableSourceLink>false</EnableSourceLink>
+    <EnableSourceControlManagerQueries>false</EnableSourceControlManagerQueries>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(IsPackable)' == 'true'">
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+</Project>
