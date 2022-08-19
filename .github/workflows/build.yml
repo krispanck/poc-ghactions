@@ -39,10 +39,11 @@ jobs:
     - run: npm ci
     - run: npm install -g @angular/cli
     - run: npm run build --if-present
+    - run: ls -s -h
     - name: Upload Artifacts
       run: |
         aws sts get-caller-identity
-        aws s3 sync ./artifacts s3://${{ env.ARTIFACT_STORAGE_AWS_S3_BUCKET }}/${{ steps.workflow-info.outputs.run-artifact-dir }} --delete
+        aws s3 sync ./dist/testapp s3://${{ env.ARTIFACT_STORAGE_AWS_S3_BUCKET }}/${{ steps.workflow-info.outputs.run-artifact-dir }} --delete
       env:
         AWS_ACCESS_KEY_ID: ${{ env.ARTIFACT_STORAGE_AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ env.ARTIFACT_STORAGE_AWS_SECRET_ACCESS_KEY }}
